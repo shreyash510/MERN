@@ -22,9 +22,9 @@ app.get("/about", middleware, (req, res) => {
 app.get("/contact", (req, res) => {
     res.send("contact")
 })
-app.get("/signin", (req, res) => {
-    res.send("login")
-})
+// app.get("/signin", (req, res) => {
+//     res.send("login")
+// })
 app.get("/signup", (req, res) => {
     res.send("resister")
 })
