@@ -1,8 +1,14 @@
 const express = require('express');
 const app = express();
-require("../db/conn");
 const User = require("../model/userSchema");
+const authRoute = require("../router/auth");
+
+require("../db/conn");
 const port = process.env.PORT || 8000;
+
+app.use(express.json());
+app.use(authRoute);
+
 
 // middleware
 const middleware = (req, res, next) => {
@@ -10,9 +16,6 @@ const middleware = (req, res, next) => {
     next();
 }
 
-app.get("/", (req, res) => {
-    res.send("hello")
-})
 app.get("/about", middleware, (req, res) => {
     res.send("about")
 })
