@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 require("../db/conn");
+const User = require("../model/userSchema");
 const port = process.env.PORT || 8000;
 
 // middleware
