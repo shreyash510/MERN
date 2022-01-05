@@ -6,13 +6,17 @@ router.get("/", (req, res)=>{
 });
 
 router.post("/register", (req, res)=>{
-    console.log(req.body);
-    res.json({message:req.body});
-})
+
+const {name, email,phone, work, password, cpassword} = req.body;
+
+    console.log(name);
+    console.log(email);
+
+    // res.json({message:req.body});
+});
 
 // router.get("/register", (req, res)=>{
 //     res.send("hello register");
 // })
 
-router.post("")
 module.exports = router;
