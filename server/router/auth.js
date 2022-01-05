@@ -42,20 +42,14 @@ const {name, email,phone, work, password, cpassword} = req.body;
 
 // user login 
 router.post("/login", async (req, res)=>{
-    // const {email, password} = req.body;
-    // console.log(email);
-    // console.log(password);
-    // res.json({
-    //     message: "its workiing"
-    // })
-
+ 
     try{
     const {email, password} = req.body;
             if(!email || !password){
                 return res.status(400).json({error: "Plz fill the data"});
             }
                 const userLogin =await User.findOne({email : email})
-                console.log(userLogin);
+                // console.log(userLogin);
 
                 if(!userLogin){
                     res.json({message: "invalid email"})
