@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -53,15 +54,18 @@ router.post("/login", async (req, res) => {
         const userLogin = await User.findOne({ email: email })
         // console.log(userLogin);
         if (userLogin) {
-            // varified hash password 
-            const isMatch = await bcrypt.compare(password, userLogin.password)
+            const isMatch = await bcrypt.compare(password, userLogin.password);
+
+            const token = await userLogin.generateAuthToken();
+            console.log(token);
+            
             if (!isMatch) {
                 res.json({ error: "invalid email" })
-            }else {
+            } else {
                 res.json({ message: "User signin Successfully" })
             }
-        }else{
-            res.status(400).json({error : "Invalid creadients"});
+        } else {
+            res.status(400).json({ error: "Invalid creadients" });
         }
     } catch (err) {
         console.log(err)
