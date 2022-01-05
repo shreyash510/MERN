@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 require("../db/conn");
 const User = require("../model/userSchema");
@@ -27,6 +28,7 @@ const {name, email,phone, work, password, cpassword} = req.body;
             const user = new User({name, email, phone, work ,password, cpassword})
           
             const userResister = await user.save();
+
                 if(userResister){
                     return res.status(201).json({
                         message : "user registered successfully"
@@ -51,8 +53,10 @@ router.post("/login", async (req, res)=>{
                 const userLogin =await User.findOne({email : email})
                 // console.log(userLogin);
 
-                if(!userLogin){
-                    res.json({message: "invalid email"})
+                // varified hash password 
+                const isMatch = await bcrypt.compare(password, userLogin.password)
+                if(!isMatch) {
+                    res.json({error: "invalid email"})
                 }{
                     res.json({message: "User signin Successfully"})
                 }
