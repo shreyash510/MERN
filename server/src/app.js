@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const User = require("../model/userSchema");
 const authRoute = require("../router/auth");
@@ -22,9 +22,11 @@ app.get("/about", middleware, (req, res) => {
 app.get("/contact", (req, res) => {
     res.send("contact")
 })
-// app.get("/signin", (req, res) => {
-//     res.send("login")
-// })
+app.get("/signin", (req, res) => {
+    res.cookie("Test", "shreyash Kolhe");
+    res.send("this is login page")
+})
+
 app.get("/signup", (req, res) => {
     res.send("resister")
 })
