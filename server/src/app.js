@@ -1,7 +1,6 @@
-const dotenv = require("dotenv");
-const mongoose = require('mongoose')
 const express = require('express');
 const app = express();
+require("../db/conn");
 const port = process.env.PORT || 8000;
 
 // middleware
@@ -9,23 +8,6 @@ const middleware = (req, res, next) => {
     console.log("hello, i'm middleware");
     next();
 }
-
-// USE dotenv to hide the API or inside usename and Pass 
-dotenv.config({path: './src/config.env'});
-
-const db = process.env.DATABASE;
-// const db = 'mongodb+srv://shreyash510:skcoder510@cluster0.xymkp.mongodb.net/mernstack?retryWrites=true&w=majority';
-
-mongoose.connect(db, {
-    useNewUrlParser: true,
-    // useCreateIndex: true,
-    useUnifiedTopology: true,
-    // useFindAndModify: false
-}).then(() => {
-    console.log("connection successful")
-}).catch((err) => {
-    console.log(err)
-})
 
 app.get("/", (req, res) => {
     res.send("hello")
