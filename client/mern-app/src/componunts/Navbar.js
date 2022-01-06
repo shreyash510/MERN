@@ -26,7 +26,7 @@ export default function Navbar() {
           <NavLink className="nav-link" to ="/login">Login</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to ="/resister">Register</NavLink>
+          <NavLink className="nav-link" to ="/signup">SignIn</NavLink>
         </li>
       </ul>      
     </div>
